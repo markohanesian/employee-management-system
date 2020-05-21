@@ -63,6 +63,14 @@ function updateEmpDb() {
       });
   }
 
+function viewDepartments(){
+  con.query("SELECT * FROM department", function (err, result) {
+    if (err) throw err;
+    console.table(result);
+  });
+
+  }
+
  function viewRoles(){
   con.query("SELECT * FROM role", function (err, result) {
     if (err) throw err;
@@ -70,7 +78,6 @@ function updateEmpDb() {
   });
 
  }
-
 
 
  
@@ -129,6 +136,10 @@ function updateEmpDb() {
 
   })
  
+
+
+
+
  }
   
 
