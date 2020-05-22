@@ -80,7 +80,7 @@ function viewDepartments(){
  }
 
 
- 
+//  function to add roles
  function addRole(){
    let questions = [
      {
@@ -131,13 +131,51 @@ function viewDepartments(){
             ],
             function (err) {
                if (err) throw err;
-               console.log("Role has been inserted!")
+               console.log("Role has been added!")
             })
 
   })
+ }
  
+//  function to add departments - GETTTING ERRORS HERE----------------------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<
+function addDepartment(){
+  let questions = [
+    {
+      name: "id",
+      type: "input",
+      message:"Enter the department id"
+      
+    },
+   {
+     name: "dept_name",
+     type: "input",
+     message:"Enter the department name"
+     
+   }
 
+   ]
+ inquirer
+ .prompt(questions)
+ .then(answers => {
 
+   let sql = `INSERT INTO department (id, dept_name) VALUES (${answers.id}, ${answers.dept_name})`
+
+  
+
+       var id = parseInt(answers.id);
+       var deptName = parseInt(answers.dept_name);
+       con.query(
+           "INSERT INTO department (id, dept_name) VALUES (?,?)",
+           [
+               id,
+               deptName
+           ],
+           function (err) {
+              if (err) throw err;
+              console.log("Department has been added!")
+           })
+
+ })
 
 
  }
