@@ -177,6 +177,70 @@ function addDepartment(){
 
  })
 
+ //  function to add employee
+function addEmployee(){
+  let questions = [
+    {
+      name: "id",
+      type: "input",
+      message:"Enter the employee id"
+      
+    },
+    {
+      name: "first_name ",
+      type: "input",
+      message:"Enter the first name of employee"
+      
+    },
+    {
+      name: "last_name",
+      type: "input",
+      message:"Enter the last name of employee"
+      
+    },
+    {
+      name: "role_id",
+      type: "input",
+      message:"Enter the role id of employee"
+      
+    },
+    {
+      name: "manager_id",
+      type: "input",
+      message:"Enter the manager id of employee"
+      
+    }
+  
+   ]
+ inquirer
+ .prompt(questions)
+ .then(answers => {
+
+   let sql = `INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (${answers.id}, ${answers.dept_name})`
+
+  
+
+       var id = parseInt(answers.id);
+       var firstName = parseInt(answers.first_name);
+       var lastName = parseInt(answers.last_name);
+       var roleId = parseInt(answers.role_id);
+       var managerId = parseInt(answers.manager_id);
+       con.query(
+           "INSERT INTO department (id, first_name, last_name, role_id, manager_id) VALUES (?,?,?,?,?)",
+           [
+               id,
+               firstName,
+               lastName,
+               roleId,
+               managerId
+           ],
+           function (err) {
+              if (err) throw err;
+              console.log("Department has been added!")
+           })
+
+ })
+}
 
  }
   
