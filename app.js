@@ -158,12 +158,15 @@ function addDepartment(){
  .prompt(questions)
  .then(answers => {
 
-   let sql = `INSERT INTO department (id, dept_name) VALUES (${answers.id}, ${answers.dept_name})`
+  //  let sql = `INSERT INTO department (id, dept_name) VALUES (${answers.id}, ${answers.dept_name})`
+   let sql = `INSERT INTO department (id, dept_name) VALUES (2, "management")`
 
   
 
        var id = parseInt(answers.id);
        var deptName = parseInt(answers.dept_name);
+       console.log(id, deptName)
+       
        con.query(
            "INSERT INTO department (id, dept_name) VALUES (?,?)",
            [
@@ -237,6 +240,47 @@ function addEmployee(){
            function (err) {
               if (err) throw err;
               console.log("Department has been added!")
+           })
+
+ })
+
+
+  
+ function UpdateEmployeeRoles(){
+  let questions = [
+    {
+      name: "id",
+      type: "input",
+      message:"What is the name of the employee you would like to update?"
+      
+    },
+    {
+      name: "id",
+      type: "input",
+      message:"What is the new role of the employee?"
+      
+    },
+       
+   ]
+ inquirer
+ .prompt(questions)
+ .then(answers => {
+
+   let sql = `UPDATE employee SET role=${answers.role} where first_name=${answers.first_name} and last_name=${answers.last_name})`
+
+  
+
+        var firstName = parseInt(answers.first_name);
+        var lastName = parseInt(answers.last_name);
+       con.query(
+           "INSERT INTO role (first_name, last_name,) VALUES (?,?)",
+           [
+              firstName,
+              lastName,
+           ],
+           function (err) {
+              if (err) throw err;
+              console.log("Role has been added!")
            })
 
  })
